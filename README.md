@@ -21,7 +21,7 @@ npm install
 ## Veritabanı yapılandırması
 1. MySQL üzerinde bir veritabanı oluşturun.
 2. Oluşturduğunuz veritabanı bilgilerini proje içindeki `config.js` dosyasına girin. 
-```
+
 (`config.js` dosyanda alan adları farklıysa kendi dosyana göre uygun yerleri güncelle.)
 
 ## İlk çalıştırma (tabloların oluşturulması)
