@@ -1,20 +1,22 @@
 const express = require("express");
 const app = express();
+
+//node modules
+const path = require("path");
+//custom
 const dummyData = require("./data/dummy-data");
-
 const sequelize = require("./data/db");
+//models
 const SystemMessage = require("./models/systemMessage");
+//routes
+const userRoutes = require("./routes/user");
 
-app.get("/", async (req, res) => {
-  try {
-    const sys = await SystemMessage.findOne({ where: { code: 110 } });
-    if (!sys) return res.send("Sistem mesajı bulunamadı.");
-    return res.send(sys.message || "");
-  } catch (err) {
-    console.error("DB hata:", err);
-    return res.status(500).send("Sunucu hatası.");
-  }
-});
+app.set("view engine", "ejs");
+
+app.use("/libs", express.static(path.join(__dirname, "node_modules")));
+app.use("/static", express.static(path.join(__dirname, "public")));
+
+app.use(userRoutes);
 
 (async () => {
   try {
