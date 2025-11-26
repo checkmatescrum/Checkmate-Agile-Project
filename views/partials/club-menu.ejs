@@ -1,0 +1,9 @@
+<div class="list-group">
+    <a href="/announcements" class="list-group-item list-group-item-action"> Tüm Kulüpler  </a>
+    <% clubs.forEach(function(club) { %>
+        <a href="/announcements/club/<%= club.url %>" 
+            class="list-group-item list-group-item-action <%= selectedClub == club.url ? 'active':'' %>"> 
+            <%= club.name %> 
+         </a>
+    <% }) %> 
+</div>

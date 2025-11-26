@@ -1,14 +1,18 @@
-const SystemMessage = require("../models/systemMessage");
+const Announcement = require("../models/announcement");
+const Club = require("../models/Club");
 
 exports.index = async function(req, res) {
     
     try{
-        const systemMessage = await SystemMessage.findAll({
+        const announcements = await Announcement.findAll({
             raw:true
         });
+        const clubs = await Club.findAll({raw: true});
         res.render("users/index", {
                     title: "Duyurular",
-                    systemMessage: systemMessage
+                    announcements: announcements,
+                    clubs: clubs,
+                    selectedClub: null
         });
     }
     catch(err){
