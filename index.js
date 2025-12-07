@@ -11,6 +11,7 @@ const path = require("path");
 //routes
 const userRoutes = require("./routes/user");
 const authRoutes = require("./routes/auth");
+const adminRoutes = require("./routes/admin");
 //custom
 const dummyData = require("./data/dummy-data");
 const sequelize = require("./data/db");
@@ -47,6 +48,7 @@ app.use("/static", express.static(path.join(__dirname, "public")));
 
 app.use("/account", authRoutes);
 app.use(userRoutes);
+app.use("/admin", adminRoutes);
 
 
 //ilişkiler
