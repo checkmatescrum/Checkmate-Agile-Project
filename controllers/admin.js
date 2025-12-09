@@ -24,7 +24,7 @@ exports.post_announcement_create = async function(req, res) {
     const baslik = req.body.baslik;
     const altbaslik = req.body.altbaslik;
     const aciklama = req.body.aciklama;
-    const resim = req.file.filename;
+    const resim = req.file ? req.file.filename : "default.jpeg";
 
     try {
         await Announcement.create({
