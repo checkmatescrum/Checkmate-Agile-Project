@@ -3,13 +3,20 @@
         <a href="/" class="navbar-brand">University Club App</a>
         <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a href="/" class="nav-link">Ana Sayfa</a>
+                    <a href="/" class="nav-link">Home Page</a>
                 </li>
-
-                <% if (isAuth) { %>             
-                
+                <li class="nav-item">
+                    <a href="/announcements" class="nav-link">Announcement List</a>
+                </li>
+            <% if (isAuth) { %>             
+                <li class="nav-item">
+                    <a href="/admin/announcements" class="nav-link">Admin Announcements </a>
+                </li>
                 <li class="nav-item">
                     <a href="/admin/announcement/create" class="nav-link">Add Announcement </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/clubs" class="nav-link">Admin Clubs </a>
                 </li>
                 <li class="nav-item">
                     <a href="/admin/club/create" class="nav-link">Add Club </a>

@@ -65,3 +65,41 @@ exports.post_club_create = async function(req, res) {
         console.log(err);
     }
 }
+
+exports.get_announcements = async function(req, res) {
+    try{
+        const announcements = await Announcement.findAll({
+            attributes: ["id","baslik","altbaslik","resim"],
+            include:{
+                model: Club,
+                attributes: ["name"]
+            }
+         });
+        res.render("admin/announcement-list", {
+            title:"announcement list",
+            announcements:announcements,
+            action: req.query.action,
+            announcementid: req.query.announcementid
+        });
+    }
+    catch(err){
+        console.log(err);
+    }
+
+}
+
+exports.get_clubs = async function(req, res) {
+    try{
+        const clubs = await Club.findAll();
+        res.render("admin/club-list", {
+            title:"club list",
+            clubs:clubs,
+            action: req.query.action,
+            clubid: req.query.clubid
+        });
+    }
+    catch(err){
+        console.log(err);
+    }
+
+}

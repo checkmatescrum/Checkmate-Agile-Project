@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("../partials/head")  %> 
+</head>
+<body>
+    
+    <%- include("../partials/nav")  %> 
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-12 mt-3">
+                <% if (action!="undefined" && action=="edit") { %>
+                    <div class="alert alert-success">
+                        <%= announcementid %> Numaralı Duyuru Güncellendi
+                    </div>
+                <% } %>
+                <% if (action!="undefined" && action=="create") { %>
+                    <div class="alert alert-success">
+                        Yeni Duyuru Oluşturuldu
+                    </div>
+                <% } %>
+                <% if (action!="undefined" && action=="delete") { %>
+                    <div class="alert alert-success">
+                        Duyuru Silindi
+                    </div>
+                <% } %>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">id</th>
+                            <th style="width: 200px;">resim</th>
+                            <th>baslik</th>
+                            <th>kulüp</th>
+                            <th style="width: 130px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% announcements.forEach(announcement => { %>
+                            <tr>
+                                <td><%= announcement.dataValues.id %></td>
+                                <td>
+                                    <img src="/static/images/<%= announcement.dataValues.resim %>" class="img-fluid" alt="">
+                                </td>
+                                <td><%= announcement.dataValues.baslik %></td>
+                                <td>
+                                    <% announcement.Clubs.forEach(club => { %>
+                                        <p><%= club.name %></p>
+                                    <% }) %>
+                                    
+                                </td>
+                                
+                                <td>
+                                    <a class="btn btn-sm btn-primary" href="/admin/announcements/<%= announcement.dataValues.id %>">edit</a>
+                                    <a class="btn btn-sm btn-danger" href="/admin/announcement/delete/<%= announcement.dataValues.id %>">delete</a>
+                                </td>
+                                
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+
+</body>
+</html>
+
+
+
