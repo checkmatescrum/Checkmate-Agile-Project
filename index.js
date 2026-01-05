@@ -8,10 +8,7 @@ const csurf = require("csurf");
 
 //node modules
 const path = require("path");
-//routes
-const userRoutes = require("./routes/user");
-const authRoutes = require("./routes/auth");
-const adminRoutes = require("./routes/admin");
+
 //custom
 const dummyData = require("./data/dummy-data");
 const sequelize = require("./data/db");
@@ -21,6 +18,15 @@ const SystemMessage = require("./models/systemMessage");
 const Club = require("./models/Club");
 const Announcement = require("./models/announcement");
 const User = require("./models/user");
+
+//ilişkiler
+Announcement.belongsToMany(Club, {through: "clubAnnouncements"});
+Club.belongsToMany(Announcement, {through: "clubAnnouncements"});
+
+//routes
+const userRoutes = require("./routes/user");
+const authRoutes = require("./routes/auth");
+const adminRoutes = require("./routes/admin");
 
 
 app.set("view engine", "ejs");
@@ -51,9 +57,7 @@ app.use(userRoutes);
 app.use("/admin", adminRoutes);
 
 
-//ilişkiler
-Announcement.belongsToMany(Club, {through: "clubAnnouncements"});
-Club.belongsToMany(Announcement, {through: "clubAnnouncements"});
+
 
 (async () => {
   try {
